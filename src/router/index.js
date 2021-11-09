@@ -1,26 +1,37 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import hello from '../views/hello.vue' // 引入 Home页面组件
-
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 // 注册路由插件
-Vue.use(VueRouter)
-
-// 
+Vue.use(VueRouter);
+//
 const routes = [
   {
-    path: '/',
-    name: 'hello',
-    component: hello
+    path: '/',
+    redirect: '/hello',
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/about.vue')
-  }
-]
+    path: '/hello',
+    name: 'hello',
+    component: () => import('../views/hello.vue'),
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/about.vue'),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  mode: 'hash',
+  base: '',
+  routes,
+});
+//
+router.beforeEach(function (to, from, next) {
+  next();
+});
 
-export default router
+router.afterEach(function (to, from) {
+  console.log(to); //到达的路由
+  console.log(from); //离开的路由
+});
+export default router;

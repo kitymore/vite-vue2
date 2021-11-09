@@ -1,21 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import getters from './getters';
+import system from './modules/system';
+import user from './modules/user';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    count: 0
+const store = new Vuex.Store({
+  modules: {
+    system,
+    user,
   },
-  getters: {
-    count(state) {
-      return state.count
-    }
-  },
-  mutations: {
-    addCount(state, num) {
-      state.count += num
-    }
-  },
-  actions: {}
-})
+  getters,
+});
+
+export default store;

@@ -1,14 +1,22 @@
-const { createVuePlugin } = require('vite-plugin-vue2')
+const { createVuePlugin } = require('vite-plugin-vue2');
 
 module.exports = {
-    plugins: [createVuePlugin( /*options*/ )],
-    resolve:{
-        alias:{
-          '@':'/src'
-        },
+  plugins: [createVuePlugin(/*options*/)],
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
+  server: {
+    port: 3009,
+    proxy: {
+      '^/medical': {
+        target: 'https://medical-manage-fat.soundai.net',
+        changeOrigin: true,
       },
-      server: {
-        port:3009,
-        cors:true,
-      },
-}
+    },
+  },
+  css: {
+    preprocessorOptions: {},
+  },
+};

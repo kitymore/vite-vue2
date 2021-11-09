@@ -1,0 +1,8 @@
+public
+dist
+*.d.ts
+*.html
+*.md
+docs
+bin
+Dockerfile

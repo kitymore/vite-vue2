@@ -1,14 +1,14 @@
-import axios from 'axios'
-import store from '@/store'
-import { Toast } from 'vant'
+import axios from 'axios';
+import store from '@/store';
+import { Toast } from 'vant';
 // 根据环境不同引入不同api地址
-import { baseApi } from '@/config'
+// import { baseApi } from '@/config'
 // create an axios instance
 const service = axios.create({
-  baseURL: baseApi, // url = base api url + request url
+  baseURL: import.meta.env.VITE_APP_BASE_API, // url = base api url + request url
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
-})
+  timeout: 5000, // request timeout
+});
 
 // request拦截器 request interceptor
 service.interceptors.request.use(
@@ -17,42 +17,48 @@ service.interceptors.request.use(
     if (!config.hideloading) {
       // loading
       Toast.loading({
-        forbidClick: true
-      })
+        forbidClick: true,
+      });
     }
     if (store.getters.token) {
-      config.headers['X-Token'] = ''
+      (config.headers['Authorization'] = store.getters.token),
+        (config.headers['Content-Type'] = 'application/json; charset=UTF-8'),
+        (config.headers['Accept-Language'] = store.getters.lang),
+        (config.headers['language'] = store.getters.lang),
+        (config.headers['appPlatCode'] = store.getters.appPlatCode),
+        (config.headers['responseType'] = 'json'),
+        (config.headers['businessCode'] = store.getters.businessCode);
     }
-    return config
+    return config;
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
-    return Promise.reject(error)
-  }
-)
+    console.log(error); // for debug
+    return Promise.reject(error);
+  },
+);
 // respone拦截器
 service.interceptors.response.use(
   response => {
-    Toast.clear()
-    const res = response.data
+    Toast.clear();
+    const res = response.data;
     if (res.status && res.status !== 200) {
       // 登录超时,重新登录
       if (res.status === 401) {
         store.dispatch('FedLogOut').then(() => {
-          location.reload()
-        })
+          location.reload();
+        });
       }
-      return Promise.reject(res || 'error')
+      return Promise.reject(res || 'error');
     } else {
-      return Promise.resolve(res)
+      return Promise.resolve(res);
     }
   },
   error => {
-    Toast.clear()
-    console.log('err' + error) // for debug
-    return Promise.reject(error)
-  }
-)
+    Toast.clear();
+    console.log('err' + error); // for debug
+    return Promise.reject(error);
+  },
+);
 
-export default service
+export default service;
