@@ -1,8 +1,8 @@
 # vue-h5-project
 
-基于 vue2 + vite2 + vant ui + sass+ rem 适配方案+axios 封装，构建手机端模板脚手架
+基于 vue2 + vite + vant ui + sass+ vw/vh 适配方案+axios 封装，构建手机端模板脚手架
 
-掘金: [vue2 vant rem 移动端框架方案](https://juejin.cn/post/7028447930277167135)
+掘金: [vue2 vant vw/vh 移动端框架方案](https://juejin.cn/post/7028447930277167135)
 
 [查看 demo] 建议手机端查看
 
@@ -12,10 +12,10 @@
 
 ### Node 版本要求
 
-`Vue CLI` 需要 Node.js 14 或更高版本 (推荐 14.17.0+)。你可以使用 [nvm](https://github.com/nvm-sh/nvm) 或
+`Vue` 需要 Node.js 14 或更高版本 (推荐 14.17.0+)。你可以使用 [nvm](https://github.com/nvm-sh/nvm) 或
 [nvm-windows](https://github.com/coreybutler/nvm-windows) 在同一台电脑中管理多个 Node 版本。
 
-本示例 Node.js 12.14.1
+本示例 Node.js 14.17.0
 
 ### 启动项目
 
@@ -32,22 +32,22 @@ npm run dev
 
 <span id="top">目录</span>
 
-- √ Vue-cli4
+- √ Vue-
 - [√ 配置多环境变量](#env)
-- [x rem 适配方案](#rem)
-- [√ vm 适配方案](#vm)
+- [x rem 适配方案](#vw/vh)
+- [√ vw 适配方案](#vw/vh)
 - [√ VantUI 组件按需加载](#vant)
 - [√ Sass 全局样式](#sass)
 - [√ Vuex 状态管理](#vuex)
 - [√ Vue-router](#router)
 - [√ Axios 封装及接口管理](#axios)
-- [√ Webpack 4 vue.config.js 基础配置](#base)
+- [x Webpack 4 vue.config.js 基础配置](#base)
 - [√ 配置 alias 别名](#alias)
 - [√ 配置 proxy 跨域](#proxy)
-- [√ 配置 打包分析](#bundle)
+- [x 配置 打包分析](#bundle)
 - [x 配置 externals 引入 cdn 资源 ](#externals)
 - [√ 去掉 console.log ](#console)
-- [√ splitChunks 单独打包第三方模块](#chunks)
+- [x splitChunks 单独打包第三方模块](#chunks)
 - [x 添加 IE 兼容 ](#ie)
 - [√ Eslint+Pettier 统一开发规范 ](#pettier)
 
@@ -55,7 +55,7 @@ npm run dev
 
 `package.json` 里的 `scripts` 配置 `serve` `stage` `build`，通过 `--mode xxx` 来执行不同环境
 
-- 通过 `npm run serve` 启动本地 , 执行 `development`
+- 通过 `npm run dev` 启动本地 , 执行 `development`
 - 通过 `npm run stage` 打包测试 , 执行 `staging`
 - 通过 `npm run build` 打包正式 , 执行 `production`
 
