@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index.js';
 import store from './store';
+import 'vant/lib/index.css';
 // 全局引入按需引入UI库 vant
 import '@/plugins/vant';
 new Vue({
